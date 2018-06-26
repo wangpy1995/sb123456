@@ -1,0 +1,1 @@
+add_executable(sb ../test/main.cpp initialization/A.cpp initialization/A.h initialization/B.cpp initialization/B.h initialization/C.cpp initialization/C.h fsm/TestFSM.cpp fsm/TestFSM.h)
