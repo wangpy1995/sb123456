@@ -6,13 +6,18 @@
 #define SB123456_C_H
 
 
-class C {
+#include "B.h"
+
+class C : public B {
 public:
     explicit C(int x);
-    const char* toString() const;
+
+    const char *toString() const;
+
+//    void test() override = delete;
+
 private:
     int x;
 };
-
 
 #endif //SB123456_C_H

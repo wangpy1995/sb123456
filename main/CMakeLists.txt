@@ -1,1 +1,1 @@
-add_executable(main record_consumer.cpp)
+add_executable(main record_consumer.c)

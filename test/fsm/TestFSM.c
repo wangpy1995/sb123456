@@ -24,7 +24,7 @@ STATE state_count(void *event) {
     SM_VAR *e = (SM_VAR *) (event);
     if (e->cnt < 3) {
         ++e->cnt;
-        printf("current state: count; cnt = %d; next state: done.\n", e->cnt);
+        printf("current state: count; cnt = %d; next state: count.\n", e->cnt);
         return s_count;
     } else {
         printf("current state: count; cnt = %d; next state: done.\n", e->cnt);

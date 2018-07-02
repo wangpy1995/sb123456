@@ -7,7 +7,8 @@ set(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS} -pthread -fPIC -O2 -DLINUX -Wal
 set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS} -pthread -fPIC -O2 -Wall -fsigned-char -lgtest")
 
 
-include_directories(${PROJECT_SOURCE_DIR}/libs)
+link_directories(${PROJECT_SOURCE_DIR}/libs)
+
 
 add_subdirectory(main)
 add_subdirectory(test)

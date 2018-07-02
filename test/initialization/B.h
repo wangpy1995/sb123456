@@ -10,7 +10,11 @@ class B {
 public:
     explicit B(int x = 0, bool b = true);
 
-    const char* toString() const;
+    explicit B(const B &bObj) = delete;
+
+    const char *toString() const;
+
+    void test();
 
 private:
     int x;

@@ -7,17 +7,24 @@
 
 
 //字符串暂时使用‘\A’分割  不记录长度
-struct _TEST_SCHEMA {
+typedef struct _TEST_SCHEMA {
     char max_len;
     char *owner;   //required
 
     char phone_nums;
-    int64_t *phone_number;  //repeated
+    char *phone_number;  //repeated
 
     char contacts_nums;
     char *contacts_name;    //optional_optional
-    int64_t *contacts_phone_number;     //optional_repeated
+    char *contacts_phone_number;     //optional_repeated
 
 } ADDRESS;
 
+
+//offset + length
+typedef struct _INTERNAL_ROW{
+    char row[];
+};
+
 #endif //SB123456_TEST_SCHEMA_H
+

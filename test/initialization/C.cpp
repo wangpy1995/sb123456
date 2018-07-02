@@ -12,6 +12,7 @@ C::C(int x) {
 
 const char *C::toString() const {
     std::stringstream ss;
+    printf("class C: %x \n",this);
     ss << "create class C(b: " << this->x << ").";
     ss.flush();
     const std::string str = ss.str();

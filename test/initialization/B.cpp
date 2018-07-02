@@ -17,6 +17,7 @@ B::B(int x, bool b) {
 
 const char *B::toString() const {
     std::stringstream ss;
+    printf("class B: %x \n",this);
     ss << "create class B(x: " << this->x << ", b: " << (this->b == 0 ? "false" : "true") << ").";
     const std::string str = ss.str();
     auto c = (char *) malloc(str.length() + 1);
@@ -29,4 +30,8 @@ const char *B::toString() const {
     memcpy(c, str.c_str(), str.length());
 //    a.deallocate(c,str.length()+1);
     return c;
+}
+
+void B::test() {
+    printf("test class B.\n");
 }

@@ -8,11 +8,6 @@ typedef unsigned char State;
 
 typedef State(*Procedure)(void *);
 
-typedef struct _FSM_VAR {
-    int r_level;    //r_level=0开始一条新记录
-    int d_level;   //d_level>1上一个字段填充null值
-} FSM_VAR;
-
 enum States {
     INIT,
     READ_NEXT,

@@ -4,7 +4,4 @@
 
 #include <cstdio>
 #include "A.h"
-//
-//A<A::t>::A() {
-//    printf("create A class success.\n");
-//}
+
