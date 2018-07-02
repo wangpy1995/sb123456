@@ -1,9 +1,9 @@
-#include <iostream>
 #include <cstdio>
+#include <cstdlib>
 #include "initialization/B.h"
-#include "initialization/A.h"
 #include "fsm/TestFSM.h"
 
+#include <gtest/gtest.h>
 
 const void testFunc(const int *(*func)(const int *)) {
     int a = 123;
@@ -14,6 +14,13 @@ void doSomething(B bObject) {
     auto c = bObject.toString();
     printf("%s\n", c);
     free((void *) c);
+}
+
+TEST(test, fsm) {
+    int i;
+    for (i = 0; i < 8; ++i) {
+        TestFSM(&i);
+    }
 }
 
 int main() {
