@@ -41,35 +41,41 @@ int main() {
     max_r_len = highestBitPos(n_l_country->max_repetition_level);
     max_d_len = highestBitPos(n_l_country->max_definition_level);
     int i;
+    int64_t country_count = n_l_country->count;
+    bits = n_l_country->bits;
+    size_t country_offset = n_l_country->data_offset;
+    size_t id_offset = docId.data_offset;
+
+    if (n_l_country->max_repetition_level != 0 && country_count > 0) {
+        --country_count;
+        readBits(bits, max_r_len, max_d_len, r_level, d_level);
+        bits += (max_r_len + max_d_len);
+    }
+
     for (i = 0; i < 2; ++i) {
-        size_t id_offset;
         if (docId.max_repetition_level == 0) {
             printf("row_%d: ", i);
-            id_offset = docId.data_offset;
-            int res = readDocId(test_data, &id_offset);
-            printf("%d\t", res);
+            int id = readDocId(test_data, &id_offset);
+            printf("%d\t", id);
         } else {
 
         }
 
 
-        bits = n_l_country->bits;
-        size_t country_offset = n_l_country->data_offset;
         if (n_l_country->max_repetition_level == 0) {
 
         } else {
 
             if (*r_level == 0) {
-                readBits(bits, max_r_len, max_d_len, r_level, d_level);
-                bits += (max_r_len + max_d_len);
-                char *res = readNLCountry(test_data, &country_offset);
-                printf("%s\t", res);
+                char *country = readNLCountry(test_data, &country_offset);
+                printf("%s\t", country);
                 //读取下一条记录
                 readBits(bits, max_r_len, max_d_len, r_level, d_level);
                 bits += (max_r_len + max_d_len);
                 while (*r_level != 0) {
                     if (*d_level > *r_level) {
-                        printf("%s\t", readNLCountry(test_data, &country_offset));
+                        char *col2 = readNLCountry(test_data, &country_offset);
+                        printf("%s\t", col2);
                     } else {
                         printf("NULL\t");
                     }

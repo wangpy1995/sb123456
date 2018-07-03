@@ -34,10 +34,16 @@ DataPage *n_l_country;
 #pragma pack(1)
 struct _TEST_DATA {
     int doc_id[2];
-    char country[5];
+    char country[6];
 };
 
-char *test_data;
+
+const struct _TEST_DATA t_data = {
+        .doc_id={10, 20},
+        .country={'u', 's', '\a', 'g', 'b'}
+};
+
+char *test_data = (char *) &t_data;
 
 void before() {
 
@@ -47,29 +53,6 @@ void before() {
     docId.data_offset = (int64_t) 0;
 
     n_l_country = (DataPage *) (malloc(sizeof(DataPage) + (2 + 2) * 5 * sizeof(Bits)));
-
-/*    n_l_country->bits = {
-            {.bit0=0x0},
-            {.bit0=0x0},
-            {.bit0=0x1},
-            {.bit0=0x1},
-            {.bit0=0x1},
-            {.bit0=0x0},
-            {.bit0=0x1},
-            {.bit0=0x0},
-            {.bit0=0x0},
-            {.bit0=0x1},
-            {.bit0=0x0},
-            {.bit0=0x1},
-            {.bit0=0x0},
-            {.bit0=0x0},
-            {.bit0=0x1},
-            {.bit0=0x1},
-            {.bit0=0x0},
-            {.bit0=0x0},
-            {.bit0=0x0},
-            {.bit0=0x1}
-    };*/
 
     //r = 0, d = 3
     n_l_country->bits[0].bit0 = 0x0;
@@ -101,12 +84,6 @@ void before() {
     n_l_country->max_definition_level = 3;
     n_l_country->count = (int64_t) 5;
     n_l_country->data_offset = (int64_t) 0 + docId.count * sizeof(int);
-
-    struct _TEST_DATA data = {
-            .doc_id={1, 2},
-            .country={'u', 's', '\a', 'g', 'b'}
-    };
-    test_data = (char *) &data;
 }
 
 int readDocId(const char *data, size_t *offset) {
@@ -118,12 +95,12 @@ int readDocId(const char *data, size_t *offset) {
 char *readNLCountry(char *data, size_t *offset) {
     data += *offset;
     size_t i = 0;
-    while (data[i] != '\a') {
+    while (data[i] != '\a' && data[i] != '\0') {
         ++i;
     }
     char *cl = (char *) malloc(i * sizeof(char));
     memcpy(cl, data, i);
-    *offset += i * sizeof(char);
+    *offset += i * sizeof(char) + 1;
     return cl;
 }
 
