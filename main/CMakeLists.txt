@@ -1,1 +1,1 @@
-add_executable(main record_consumer.c)
+add_executable(main io/reader.h record_consumer.c)

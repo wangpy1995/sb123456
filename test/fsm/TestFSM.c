@@ -15,7 +15,7 @@ enum states {
 
 STATE state_init(void *event) {
     SM_VAR *e = (SM_VAR *) (event);
-    e->cnt = 0;
+//    e->cnt = 0;
     printf("current state: init; cnt = %d; next state: count.\n", e->cnt);
     return s_count;
 }

@@ -5,6 +5,10 @@
 #ifndef SB123456_READER_H
 #define SB123456_READER_H
 
+
+#include <stdint.h>
+#include <stdlib.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,13 +18,6 @@ extern "C" {
 #pragma pack(1)
 typedef union _BITS {
     unsigned bit0:1;
-    unsigned bit1:1;
-    unsigned bit2:1;
-    unsigned bit3:1;
-    unsigned bit4:1;
-    unsigned bit5:1;
-    unsigned bit6:1;
-    unsigned bit7:1;
 } Bits;
 
 /**
@@ -28,8 +25,8 @@ typedef union _BITS {
  */
 #pragma pack(1)
 typedef struct DataPage {
-    unsigned char max_definition_level_len;   //definition bit len
-    unsigned char max_repetition_level_len;  //repetition bit len
+    unsigned char max_repetition_level;
+    unsigned char max_definition_level;
     int64_t count;
     size_t data_offset;
     Bits bits[];    //repetition + definition
